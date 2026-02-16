@@ -1,0 +1,14 @@
+name: "iniye-anthony-site"
+title: "Iniye Anthony"
+description: "Personal website for GV300"
+output_dir: "_site"
+
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "GV300 Showcase"
+      href: gv300-showcase.html
+

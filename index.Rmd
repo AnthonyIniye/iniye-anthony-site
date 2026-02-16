@@ -1,0 +1,42 @@
+---
+title: "Iniye Anthony"
+description: GV300 Personal Website
+---
+
+# Welcome
+
+I am Iniye Anthony, a GV300 student with a strong interest in political data analysis, experimental research, and statistical modelling in R.
+
+This website presents selected work from my coursework, demonstrating my ability to design simulations, estimate causal effects, and communicate quantitative findings clearly.
+
+---
+
+## Academic Interests
+
+- Causal inference and experimental design  
+- Political communication and public opinion  
+- Statistical modelling (OLS and logistic regression)  
+- Data visualisation using ggplot2  
+
+---
+
+## Featured Work
+
+My featured project explores an A/B test conducted by a political party to evaluate whether issue-focused messaging increases supporter signups.
+
+👉 [View my GV300 Showcase](gv300-showcase.html)
+
+---
+
+## Technical Skills Demonstrated
+
+- Data simulation  
+- Difference-in-means estimation  
+- Linear Probability Models  
+- Logistic regression  
+- Interaction effects  
+- Ethical evaluation of political experimentation  
+
+---
+
+Thank you for visiting my site.

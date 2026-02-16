@@ -1,0 +1,11 @@
+---
+title: "About Me"
+---
+
+I am Iniye Anthony, a student in GV300 with a strong interest in political data analysis and experimental research methods. My work focuses on understanding how political messaging influences behaviour using statistical modelling and causal inference techniques.
+
+Through my coursework, I have developed practical experience in R, including data simulation, regression analysis, and data visualisation using ggplot2. I am particularly interested in how quantitative methods can be applied to real-world political communication and public opinion research.
+
+This website showcases selected work that demonstrates my ability to design experiments, estimate Average Treatment Effects, and communicate findings clearly to both technical and non-technical audiences.
+
+
