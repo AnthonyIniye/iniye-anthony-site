@@ -32,6 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -320,13 +322,11 @@ party_ab &lt;- data.frame(
 
 # Display first few rows
 head(party_ab)</code></pre>
-<pre><code>##   visitor_id treatment support_signup
-## 1          1         0              1
-## 2          2         1              0
-## 3          3         1              0
-## 4          4         1              0
-## 5          5         1              0
-## 6          6         0              0</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["visitor_id"],"name":[1],"type":["int"],"align":["right"]},{"label":["treatment"],"name":[2],"type":["int"],"align":["right"]},{"label":["support_signup"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"0","3":"1","_rn_":"1"},{"1":"2","2":"1","3":"0","_rn_":"2"},{"1":"3","2":"1","3":"0","_rn_":"3"},{"1":"4","2":"1","3":"0","_rn_":"4"},{"1":"5","2":"1","3":"0","_rn_":"5"},{"1":"6","2":"0","3":"0","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p>The key conceptual point illustrated here is the <strong>fundamental
 problem of causal inference</strong>: for each visitor, we only observe
 one potential outcome (Y0 or Y1) based on which homepage they actually
@@ -356,9 +356,11 @@ table(party_ab$treatment)</code></pre>
 ## 0.472 0.528</code></pre>
 <pre class="r"><code># Signup rates by group
 aggregate(support_signup ~ treatment, data = party_ab, mean)</code></pre>
-<pre><code>##   treatment support_signup
-## 1         0      0.0960452
-## 2         1      0.1729798</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["treatment"],"name":[1],"type":["int"],"align":["right"]},{"label":["support_signup"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"0.0960452"},{"1":"1","2":"0.1729798"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p>The random assignment worked well: approximately 50% of visitors were
 assigned to each condition. The control group shows a signup rate around
 <strong>9.6%</strong>, while the treatment group shows approximately
@@ -566,9 +568,11 @@ data.frame(
   Subgroup = c(&quot;Low Interest&quot;, &quot;High Interest&quot;),
   Treatment_Effect = c(te_low, te_high)
 )</code></pre>
-<pre><code>##        Subgroup Treatment_Effect
-## 1  Low Interest       0.07546187
-## 2 High Interest       0.07832492</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Subgroup"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Treatment_Effect"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Low Interest","2":"0.07546187"},{"1":"High Interest","2":"0.07832492"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p>The interaction term (<code>treatment:high_interest</code>) tells us
 whether the effect of the issue-focused homepage differs between low-
 and high-interest visitors. A positive coefficient would mean the

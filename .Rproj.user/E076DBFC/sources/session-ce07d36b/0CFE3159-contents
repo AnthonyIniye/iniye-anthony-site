@@ -2,7 +2,9 @@
 title: "Iniye Anthony"
 description: GV300 Personal Website
 output:
-  postcards::jolla:
+  html_document:
+    df_print: paged
+  postcards::jolla: null
 ---
 
 # Welcome

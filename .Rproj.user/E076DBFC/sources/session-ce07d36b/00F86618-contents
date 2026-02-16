@@ -1,8 +1,9 @@
 ---
 title: "About Me"
 output:
-  postcards::jolla:
-   
+  html_document:
+    df_print: paged
+  postcards::jolla: null
 ---
 
 I am Iniye Anthony, a student in GV300 with a strong interest in political data analysis and experimental research methods. My work focuses on understanding how political messaging influences behaviour using statistical modelling and causal inference techniques.

@@ -1,9 +1,10 @@
 ---
 title: 'GV300 Showcase: A/B Testing in Political Communication'
-description: "Estimating Average Treatment Effects using simulation and regression"
+description: Estimating Average Treatment Effects using simulation and regression
 output:
-  postcards::jolla:
-  
+  html_document:
+    df_print: paged
+  postcards::jolla: null
 ---
 
 ## Introduction
