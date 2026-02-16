@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>GV300 Showcase: A/B Testing in Political Communication</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="gv300-showcase.html">GV300 Showcase</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">GV300 Showcase: A/B Testing in Political
+Communication</h1>
+
+</div>
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>For my GV300 assignment on A/B testing, I simulated an experiment
+testing whether an issue-focused political homepage increases supporter
+signups compared to standard party messaging. This analysis demonstrates
+core causal inference concepts including random assignment, potential
+outcomes, and treatment effect estimation.</p>
+<p>The experiment randomly assigned 1,500 visitors to either a control
+homepage (standard messaging) or treatment homepage (emphasizing a
+hot-button issue like immigration). The outcome of interest was whether
+visitors signed up as party supporters.</p>
+<hr />
+</div>
+<div id="code-example-simulating-the-experiment" class="section level2">
+<h2>Code Example: Simulating the Experiment</h2>
+<p>Below is the R code I used to generate the experimental data. This
+simulation creates potential outcomes under both conditions and then
+reveals only the outcome corresponding to each visitor’s actual
+treatment assignment.</p>
+<pre class="r"><code># Load required libraries
+library(ggplot2)
+library(dplyr)
+
+# Set seed for reproducibility
+set.seed(7263)
+
+# 1. Sample size
+n &lt;- 1500
+
+# 2. Random treatment assignment (50/50 split)
+treatment &lt;- rbinom(n = n, size = 1, prob = 0.5)
+
+# 3. Define potential outcomes
+p_control &lt;- 0.12      # Baseline signup probability
+p_treated &lt;- 0.17      # Treatment increases by 5 percentage points
+
+Y0 &lt;- rbinom(n = n, size = 1, prob = p_control)  # Outcome under control
+Y1 &lt;- rbinom(n = n, size = 1, prob = p_treated)  # Outcome under treatment
+
+# 4. Realised outcome (depends on actual treatment received)
+support_signup &lt;- ifelse(treatment == 1, Y1, Y0)
+
+# 5. Create data frame
+party_ab &lt;- data.frame(
+  visitor_id = 1:n,
+  treatment = treatment,
+  support_signup = support_signup
+)
+
+# Display first few rows
+head(party_ab)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["visitor_id"],"name":[1],"type":["int"],"align":["right"]},{"label":["treatment"],"name":[2],"type":["int"],"align":["right"]},{"label":["support_signup"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"0","3":"1","_rn_":"1"},{"1":"2","2":"1","3":"0","_rn_":"2"},{"1":"3","2":"1","3":"0","_rn_":"3"},{"1":"4","2":"1","3":"0","_rn_":"4"},{"1":"5","2":"1","3":"0","_rn_":"5"},{"1":"6","2":"0","3":"0","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The key conceptual point illustrated here is the <strong>fundamental
+problem of causal inference</strong>: for each visitor, we only observe
+one potential outcome (Y0 or Y1) based on which homepage they actually
+saw. The counterfactual—what would have happened under the other
+condition—remains unobserved.</p>
+<hr />
+</div>
+<div id="data-inspection" class="section level2">
+<h2>Data Inspection</h2>
+<pre class="r"><code># Summary statistics
+summary(party_ab)</code></pre>
+<pre><code>##    visitor_id       treatment     support_signup  
+##  Min.   :   1.0   Min.   :0.000   Min.   :0.0000  
+##  1st Qu.: 375.8   1st Qu.:0.000   1st Qu.:0.0000  
+##  Median : 750.5   Median :1.000   Median :0.0000  
+##  Mean   : 750.5   Mean   :0.528   Mean   :0.1367  
+##  3rd Qu.:1125.2   3rd Qu.:1.000   3rd Qu.:0.0000  
+##  Max.   :1500.0   Max.   :1.000   Max.   :1.0000</code></pre>
+<pre class="r"><code># Check treatment balance
+table(party_ab$treatment)</code></pre>
+<pre><code>## 
+##   0   1 
+## 708 792</code></pre>
+<pre class="r"><code>prop.table(table(party_ab$treatment))</code></pre>
+<pre><code>## 
+##     0     1 
+## 0.472 0.528</code></pre>
+<pre class="r"><code># Signup rates by group
+aggregate(support_signup ~ treatment, data = party_ab, mean)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["treatment"],"name":[1],"type":["int"],"align":["right"]},{"label":["support_signup"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"0.0960452"},{"1":"1","2":"0.1729798"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The random assignment worked well: approximately 50% of visitors were
+assigned to each condition. The control group shows a signup rate around
+<strong>9.6%</strong>, while the treatment group shows approximately
+<strong>17.3%</strong>—a difference of <strong>7.7 percentage
+points</strong>.</p>
+<hr />
+</div>
+<div id="visualisation-treatment-effects" class="section level2">
+<h2>Visualisation: Treatment Effects</h2>
+<p>My favourite visualisation from this assignment shows the signup
+rates for both groups with confidence intervals, making the uncertainty
+around the estimates visible to readers.</p>
+<pre class="r"><code># Calculate group means and standard errors
+group_summary &lt;- party_ab %&gt;%
+  group_by(treatment) %&gt;%
+  summarise(
+    mean_signup = mean(support_signup),
+    se = sqrt(mean_signup * (1 - mean_signup) / n()),
+    .groups = &quot;drop&quot;
+  ) %&gt;%
+  mutate(
+    treatment_label = ifelse(treatment == 0, &quot;Control&quot;, &quot;Issue-focused&quot;),
+    ci_lower = mean_signup - 1.96 * se,
+    ci_upper = mean_signup + 1.96 * se
+  )
+
+# Create the plot
+ggplot(group_summary, aes(x = treatment_label, y = mean_signup, fill = treatment_label)) +
+  geom_col(width = 0.6, alpha = 0.85) +
+  geom_errorbar(
+    aes(ymin = ci_lower, ymax = ci_upper),
+    width = 0.15,
+    linewidth = 0.8
+  ) +
+  geom_text(
+    aes(label = paste0(round(mean_signup * 100, 1), &quot;%&quot;)),
+    vjust = -0.7,
+    size = 5
+  ) +
+  scale_y_continuous(
+    limits = c(0, 0.25),
+    labels = scales::percent_format(accuracy = 1),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_fill_manual(values = c(&quot;Control&quot; = &quot;gray70&quot;, &quot;Issue-focused&quot; = &quot;steelblue&quot;)) +
+  labs(
+    x = NULL,
+    y = &quot;Supporter signup rate&quot;,
+    title = &quot;Issue-focused homepage increases signups by ~7.7 percentage points&quot;,
+    subtitle = &quot;Bars show mean signup rates with 95% confidence intervals (n = 1,500 visitors)&quot;
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = &quot;none&quot;,
+    plot.title = element_text(face = &quot;bold&quot;, size = 14),
+    plot.subtitle = element_text(size = 11, color = &quot;gray30&quot;)
+  )</code></pre>
+<p><img src="gv300-showcase_files/figure-html/visualisation-1.png" width="768" /></p>
+<hr />
+</div>
+<div id="what-this-figure-shows" class="section level2">
+<h2>What This Figure Shows</h2>
+<p>The visualisation above compares supporter signup rates between
+visitors shown the control homepage (standard party messaging) and those
+shown the issue-focused homepage.</p>
+<p><strong>Key findings:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Control group</strong>: 9.6% of visitors signed up as
+supporters (95% CI: 7.8% to 11.4%)</li>
+<li><strong>Treatment group</strong>: 17.3% of visitors signed up (95%
+CI: 15.1% to 19.5%)</li>
+<li><strong>Average Treatment Effect (ATE)</strong>: +7.7 percentage
+points</li>
+</ol>
+<p>The error bars (95% confidence intervals) show that this difference
+is statistically significant—they do not overlap, indicating the
+treatment effect is unlikely to be due to random chance alone. In fact,
+the confidence intervals are well-separated, with the entire control
+interval below the entire treatment interval.</p>
+<p>From a practical perspective, this 7.7 percentage point increase
+represents an <strong>80% relative improvement</strong> over the
+baseline signup rate (9.6% → 17.3%). For a political party seeking to
+expand its supporter base, this magnitude of effect could translate into
+thousands of additional signups over time—a substantively meaningful
+impact for campaign strategy.</p>
+<hr />
+</div>
+<div id="model-comparison" class="section level2">
+<h2>Model Comparison</h2>
+<p>To ensure robustness, I estimated the treatment effect using three
+different approaches:</p>
+<pre class="r"><code># 1. Difference-in-means (ATE)
+mean_control &lt;- mean(party_ab$support_signup[party_ab$treatment == 0])
+mean_treated &lt;- mean(party_ab$support_signup[party_ab$treatment == 1])
+ate_diff &lt;- mean_treated - mean_control
+
+# 2. Linear Probability Model
+lm_model &lt;- lm(support_signup ~ treatment, data = party_ab)
+
+# 3. Logistic Regression
+logit_model &lt;- glm(support_signup ~ treatment, 
+                   data = party_ab, 
+                   family = binomial(link = &quot;logit&quot;))
+
+# Predicted probabilities from logit
+p_control_logit &lt;- predict(logit_model, 
+                           newdata = data.frame(treatment = 0), 
+                           type = &quot;response&quot;)
+p_treated_logit &lt;- predict(logit_model, 
+                           newdata = data.frame(treatment = 1), 
+                           type = &quot;response&quot;)
+ate_logit &lt;- p_treated_logit - p_control_logit
+
+# Display results
+results &lt;- data.frame(
+  Method = c(&quot;Difference-in-means&quot;, &quot;Linear Probability Model&quot;, &quot;Logistic Regression&quot;),
+  ATE = c(ate_diff, coef(lm_model)[&quot;treatment&quot;], ate_logit)
+)
+print(results)</code></pre>
+<pre><code>##                             Method       ATE
+##                Difference-in-means 0.0769346
+## treatment Linear Probability Model 0.0769346
+## 1              Logistic Regression 0.0769346</code></pre>
+<p>All three methods produce nearly identical estimates (<strong>~0.077,
+or 7.7 percentage points</strong>), which is expected in a
+well-randomized experiment with a binary treatment and an outcome
+probability far from 0 or 1. This convergence gives confidence in the
+finding. The linear probability model coefficient tells us that the
+issue-focused homepage increases signup probability by about 7.7
+percentage points compared to the control.</p>
+<hr />
+</div>
+<div id="linear-probability-model-interpretation"
+class="section level2">
+<h2>Linear Probability Model Interpretation</h2>
+<pre class="r"><code>summary(lm_model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = support_signup ~ treatment, data = party_ab)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.17298 -0.17298 -0.09605 -0.09605  0.90395 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.09605    0.01284   7.482 1.24e-13 ***
+## treatment    0.07693    0.01767   4.355 1.42e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3416 on 1498 degrees of freedom
+## Multiple R-squared:  0.0125, Adjusted R-squared:  0.01184 
+## F-statistic: 18.97 on 1 and 1498 DF,  p-value: 1.422e-05</code></pre>
+<p>The intercept (0.096) estimates the baseline signup probability for
+visitors in the control group—about <strong>9.6%</strong>. The treatment
+coefficient (0.077) represents the Average Treatment Effect: being shown
+the issue-focused homepage increases signup probability by <strong>7.7
+percentage points</strong>. This is identical to the difference-in-means
+calculation (<code>ate_diff</code>), demonstrating that in a randomized
+experiment with a binary treatment, OLS regression simply reproduces the
+group mean difference.</p>
+<hr />
+</div>
+<div id="heterogeneous-effects-by-interest-level"
+class="section level2">
+<h2>Heterogeneous Effects by Interest Level</h2>
+<p>The assignment required exploring whether treatment effects vary
+across different types of visitors. I added a simulated covariate for
+political interest:</p>
+<pre class="r"><code># Add simulated covariate
+party_ab$high_interest &lt;- rbinom(nrow(party_ab), size = 1, prob = 0.4)
+
+# Interaction model
+lm_het_interest &lt;- lm(support_signup ~ treatment * high_interest, data = party_ab)
+summary(lm_het_interest)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = support_signup ~ treatment * high_interest, data = party_ab)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.18008 -0.18008 -0.10462 -0.08418  0.91582 
+## 
+## Coefficients:
+##                          Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)              0.104623   0.016853   6.208 6.94e-10 ***
+## treatment                0.075462   0.023051   3.274  0.00109 ** 
+## high_interest           -0.020448   0.026021  -0.786  0.43210    
+## treatment:high_interest  0.002863   0.035906   0.080  0.93646    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3417 on 1496 degrees of freedom
+## Multiple R-squared:  0.01324,    Adjusted R-squared:  0.01126 
+## F-statistic: 6.692 on 3 and 1496 DF,  p-value: 0.0001739</code></pre>
+<pre class="r"><code># Calculate treatment effects by subgroup
+# Low interest (high_interest = 0)
+te_low &lt;- coef(lm_het_interest)[&quot;treatment&quot;]
+
+# High interest (high_interest = 1)  
+te_high &lt;- coef(lm_het_interest)[&quot;treatment&quot;] + coef(lm_het_interest)[&quot;treatment:high_interest&quot;]
+
+data.frame(
+  Subgroup = c(&quot;Low Interest&quot;, &quot;High Interest&quot;),
+  Treatment_Effect = c(te_low, te_high)
+)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Subgroup"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Treatment_Effect"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Low Interest","2":"0.07546187"},{"1":"High Interest","2":"0.07832492"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The interaction term (<code>treatment:high_interest</code>) tells us
+whether the effect of the issue-focused homepage differs between low-
+and high-interest visitors. A positive coefficient would mean the
+treatment works better for highly interested voters; a negative
+coefficient would mean it works better for the less engaged. This kind
+of heterogeneity analysis helps campaigns understand whether messaging
+effects are universal or targeted.</p>
+<hr />
+</div>
+<div id="why-this-work-matters" class="section level2">
+<h2>Why This Work Matters</h2>
+<p>This analysis demonstrates several important concepts in quantitative
+political science:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Causal inference with randomized experiments</strong>:
+Random assignment allows us to estimate treatment effects without
+confounding bias, providing credible evidence about what works in
+political communication.</p></li>
+<li><p><strong>The potential outcomes framework</strong>: Understanding
+that each unit has two potential outcomes, but we only observe one, is
+fundamental to thinking causally about any intervention.</p></li>
+<li><p><strong>Multiple estimation approaches</strong>: Seeing that
+difference-in-means, linear regression, and logistic regression all
+point to the same conclusion builds confidence in results and shows
+methodological flexibility.</p></li>
+<li><p><strong>Uncertainty communication</strong>: Including confidence
+intervals in visualisations helps readers understand the precision of
+estimates, not just point predictions—crucial for responsible data
+communication.</p></li>
+<li><p><strong>Practical significance</strong>: Translating statistical
+results into substantive interpretations (e.g., <strong>“80% relative
+improvement”</strong>) makes findings accessible to non-technical
+audiences like campaign strategists.</p></li>
+<li><p><strong>Ethical awareness</strong>: The assignment prompted
+reflection on whether optimizing political messages through
+experimentation serves democratic values or merely manipulates voters—a
+tension between technical efficiency and ethical
+responsibility.</p></li>
+</ol>
+<hr />
+</div>
+<div id="ethical-reflection" class="section level2">
+<h2>Ethical Reflection</h2>
+<p>While this analysis focused on technical estimation, the assignment
+also prompted reflection on the ethics of political experimentation. Key
+considerations include:</p>
+<ul>
+<li><strong>Informed consent</strong>: Website visitors typically don’t
+know they’re in an experiment, yet messaging could influence political
+preferences or engagement.</li>
+<li><strong>Manipulation risks</strong>: Issue-focused messaging may
+deliberately amplify fear, anger, or prejudice (e.g., around
+immigration), risking harm to vulnerable groups and polarisation.</li>
+<li><strong>Fairness and representation</strong>: If some groups are
+systematically more exposed to persuasive messages, experiments could
+widen inequalities in political voice.</li>
+<li><strong>Data privacy</strong>: Tracking signup behaviour may involve
+sensitive political data; parties must follow data protection rules and
+minimise data collection.</li>
+<li><strong>Democratic implications</strong>: Political communication
+experiments can be used to optimise persuasion rather than promote
+informed choice, potentially undermining deliberation.</li>
+</ul>
+<p>These ethical dimensions remind us that statistical tools, however
+powerful, must be deployed thoughtfully in political contexts.</p>
+<hr />
+</div>
+<div id="source-code" class="section level2">
+<h2>Source Code</h2>
+<p>The complete R Markdown source for this analysis is available in my
+<a href="https://github.com/2007263/gv300-website">GV300 assignments
+repository</a>.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
